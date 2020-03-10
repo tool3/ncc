@@ -14,9 +14,9 @@
     "url": "git+git@github.com:tool3/ncc.git"
   },
   "keywords": [
-    "GitHub",
-    "Actions",
-    "JavaScript"
+    "github",
+    "ncc",
+    "continous integration"
   ],
   "author": "Tal Hayut",
   "license": "MIT",
@@ -34,10 +34,5 @@
     "eslint": "^6.3.0",
     "husky": "^3.1.0",
     "jest": "^24.9.0"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "npm run build && git add ."
-    }
   }
 }

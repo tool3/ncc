@@ -1,16 +1,15 @@
 name: 'Bump Action'
 description: 'Bump a version based on commit message, tag it, and push package.json update to repository'
 inputs:
-  branch:  
-    description: 'the destination branch'
-    required: false
-    default: 'master'
   github_token: 
     description: 'github access token'
     required: true
-  dir: 
-    description: 'code dir to compile'
+  src: 
+    description: 'source code dir/file to compile'
     required: true
+  branch:  
+    description: 'the destination branch'
+    default: 'master'
 outputs:
   dist: # output will be available to future steps 
     description: 'The dist folder'
