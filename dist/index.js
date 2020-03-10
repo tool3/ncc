@@ -10815,7 +10815,7 @@ async function run() {
     await write(`dist/index.js`, code);
     
     // push dist
-    await exec('git', ['add', '.']);
+    await exec('git', ['add', 'dist/index.js']);
     await exec('git', ['commit', '-a', '-m', 'dist update']);
     await exec('git', ['push', 'origin', `HEAD:${inputBranch}`]);
 
