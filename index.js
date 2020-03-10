@@ -19,6 +19,9 @@ async function run() {
     await exec('git', ['config', '--local', 'user.name', name]);
     await exec('git', ['config', '--local', 'user.email', email]);
 
+    // install dependencies
+    await exec('npm', ['install']);
+
     // compile code
     require('@zeit/ncc')(resolvedCodeDirectory, {
       cache: false,
