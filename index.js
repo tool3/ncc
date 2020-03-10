@@ -13,7 +13,7 @@ async function run() {
 
     const inputBranch = core.getInput('branch');
     const src = core.getInput('src');
-    
+
     await exec('git', ['config', '--local', 'user.name', name]);
     await exec('git', ['config', '--local', 'user.email', email]);
 
@@ -22,12 +22,25 @@ async function run() {
 
     // compile code
     ncc(`./${src}`, {
-      cache: false
+      // provide a custom cache path or disable caching
+      cache: false,
+      // directory outside of which never to emit assets
+      filterAssetBase: process.cwd(), // default
+      minify: false, // default
+      sourceMap: false, // default
+      sourceMapBasePrefix: '../', // default treats sources as output-relative
+      // when outputting a sourcemap, automatically include
+      // source-map-support in the output file (increases output by 32kB).
+      sourceMapRegister: true, // default
+      watch: false, // default
+      v8cache: false, // default
+      quiet: false, // default
+      debugLog: false // default
     }).then(async (everything) => {
       const { code, assets } = everything;
       // create dist folder
-      await mkdir('dist', {recursive: true});
-      
+      await mkdir('dist', { recursive: true });
+
       // create assets
       Object.keys(assets).map(async asset => {
         await write(`dist/${asset}`, assets[asset].source);
