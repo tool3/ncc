@@ -9,12 +9,14 @@ const write = util.promisify(fs.writeFile);
 
 async function run() {
   try {
+    core.info(__dirname);
     const { pusher: { email, name } } = github.context.payload;
+    
     const inputBranch = core.getInput('branch');
     const codeDirectory = core.getInput('src');
     const resolvedCodeDirectory = path.join(__dirname, codeDirectory);
     core.info(resolvedCodeDirectory);
-    core.info(__dirname);
+    
     
     await exec('git', ['config', '--local', 'user.name', name]);
     await exec('git', ['config', '--local', 'user.email', email]);
