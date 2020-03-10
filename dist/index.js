@@ -10804,7 +10804,7 @@ async function run() {
     await exec('npm', ['install']);
 
     // compile code
-    __webpack_require__(526)(src, {
+    await __webpack_require__(526)(src, {
       // provide a custom cache path or disable caching
       cache: false,
       // directory outside of which never to emit assets

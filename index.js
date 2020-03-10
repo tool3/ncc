@@ -21,7 +21,7 @@ async function run() {
     await exec('npm', ['install']);
 
     // compile code
-    require('@zeit/ncc')(src, {
+    await require('@zeit/ncc')(src, {
       // provide a custom cache path or disable caching
       cache: false,
       // directory outside of which never to emit assets

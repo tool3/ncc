@@ -18,6 +18,10 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         src: 'index.js'
+    - uses: actions/upload-artifact@v1
+      with:
+        name: dist
+        path: dist/
 ```
 this will:
 * compile `index.js` from the repo root directory.
