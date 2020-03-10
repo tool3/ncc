@@ -1303,7 +1303,7 @@ module.exports = require("os");
 const core = __webpack_require__(470);
 const { exec } = __webpack_require__(986);
 const github = __webpack_require__(469);
-const path = __webpack_require__(622);
+const ncc = __webpack_require__(48);
 const fs = __webpack_require__(747);
 const util = __webpack_require__(669);
 const mkdir = util.promisify(fs.mkdir);
@@ -1314,8 +1314,7 @@ async function run() {
     const { pusher: { email, name } } = github.context.payload;
 
     const inputBranch = core.getInput('branch');
-    const codeDirectory = core.getInput('src');
-    const resolvedCodeDirectory = path.join(__dirname, codeDirectory);
+    const src = core.getInput('src');
     
     await exec('git', ['config', '--local', 'user.name', name]);
     await exec('git', ['config', '--local', 'user.email', email]);
@@ -1324,7 +1323,7 @@ async function run() {
     await exec('npm', ['install']);
 
     // compile code
-    __webpack_require__(48)(resolvedCodeDirectory, {
+    ncc(`./${src}`, {
       cache: false
     }).then(async (everything) => {
       const { code, assets } = everything;
