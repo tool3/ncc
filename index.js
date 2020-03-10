@@ -1,7 +1,6 @@
 const core = require('@actions/core');
 const { exec } = require('@actions/exec');
 const github = require('@actions/github');
-const ncc = require('@zeit/ncc');
 const fs = require('fs');
 const util = require('util');
 const mkdir = util.promisify(fs.mkdir);
@@ -21,7 +20,7 @@ async function run() {
     await exec('npm', ['install']);
 
     // compile code
-    ncc(`./${src}`, {
+    require('@zeit/ncc')(`./${src}`, {
       // provide a custom cache path or disable caching
       cache: false,
       // directory outside of which never to emit assets

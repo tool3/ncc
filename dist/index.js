@@ -1303,7 +1303,6 @@ module.exports = require("os");
 const core = __webpack_require__(470);
 const { exec } = __webpack_require__(986);
 const github = __webpack_require__(469);
-const ncc = __webpack_require__(48);
 const fs = __webpack_require__(747);
 const util = __webpack_require__(669);
 const mkdir = util.promisify(fs.mkdir);
@@ -1323,7 +1322,7 @@ async function run() {
     await exec('npm', ['install']);
 
     // compile code
-    ncc(`./${src}`, {
+    __webpack_require__(48)(`./${src}`, {
       // provide a custom cache path or disable caching
       cache: false,
       // directory outside of which never to emit assets
