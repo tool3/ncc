@@ -10787,6 +10787,7 @@ const github = __webpack_require__(458);
 const fs = __webpack_require__(747);
 const path = __webpack_require__(622);
 const util = __webpack_require__(669);
+const ncc = __webpack_require__(526);
 const mkdir = util.promisify(fs.mkdir);
 const write = util.promisify(fs.writeFile);
 
@@ -10804,36 +10805,22 @@ async function run() {
     await exec('npm', ['install']);
 
     // compile code
-    __webpack_require__(526)(src, {
-      // provide a custom cache path or disable caching
-      cache: false,
-      // directory outside of which never to emit assets
-      filterAssetBase: process.cwd(), // default
-      minify: false, // default
-      sourceMap: false, // default
-      sourceMapBasePrefix: '../', // default treats sources as output-relative
-      // when outputting a sourcemap, automatically include
-      // source-map-support in the output file (increases output by 32kB).
-      sourceMapRegister: true, // default
-      watch: false, // default
-      v8cache: false, // default
-      quiet: false, // default
-      debugLog: false // default
-    }).then(async (everything) => {
-      const { code, assets } = everything;
-      // create dist folder
-      await mkdir('dist', { recursive: true });
+    const everything = await ncc(src);
 
-      // create assets
-      Object.keys(assets).map(async asset => {
-        await write(`dist/${asset}`, assets[asset].source);
-      });
+    const { code, assets } = everything;
+    // create dist folder
+    await mkdir('dist', { recursive: true });
 
-      // write final code asset
-      await write(`dist/index.js`, code);
-      // push dist
-      await exec('git', ['push', 'origin', `HEAD:${inputBranch}`])
+    // create assets
+    Object.keys(assets).map(async asset => {
+      await write(`dist/${asset}`, assets[asset].source);
     });
+
+    // write final code asset
+    await write(`dist/index.js`, code);
+    // push dist
+    await exec('git', ['push', 'origin', `HEAD:${inputBranch}`])
+
 
   } catch (error) {
     core.setFailed(`Failed to publish ${error.message}`);
