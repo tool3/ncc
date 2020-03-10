@@ -2,6 +2,7 @@ const core = require('@actions/core');
 const { exec } = require('@actions/exec');
 const github = require('@actions/github');
 const fs = require('fs');
+const path = require('path');
 const util = require('util');
 const mkdir = util.promisify(fs.mkdir);
 const write = util.promisify(fs.writeFile);
@@ -11,7 +12,7 @@ async function run() {
     const { pusher: { email, name } } = github.context.payload;
 
     const inputBranch = core.getInput('branch');
-    const src = core.getInput('src');
+    const src = path.resolve(path.join(__dirname, core.getInput('src')));
 
     await exec('git', ['config', '--local', 'user.name', name]);
     await exec('git', ['config', '--local', 'user.email', email]);
@@ -20,7 +21,7 @@ async function run() {
     await exec('npm', ['install']);
 
     // compile code
-    require('@zeit/ncc')(`./${src}`, {
+    require('@zeit/ncc')(src, {
       // provide a custom cache path or disable caching
       cache: false,
       // directory outside of which never to emit assets
