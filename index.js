@@ -1,7 +1,7 @@
 const core = require('@actions/core');
 const { exec } = require('@actions/exec');
 const github = require('@actions/github');
-const path = require('path');
+const ncc = require('@zeit/ncc');
 const fs = require('fs');
 const util = require('util');
 const mkdir = util.promisify(fs.mkdir);
@@ -12,8 +12,7 @@ async function run() {
     const { pusher: { email, name } } = github.context.payload;
 
     const inputBranch = core.getInput('branch');
-    const codeDirectory = core.getInput('src');
-    const resolvedCodeDirectory = path.join(__dirname, codeDirectory);
+    const src = core.getInput('src');
     
     await exec('git', ['config', '--local', 'user.name', name]);
     await exec('git', ['config', '--local', 'user.email', email]);
@@ -22,7 +21,7 @@ async function run() {
     await exec('npm', ['install']);
 
     // compile code
-    require('@zeit/ncc')(resolvedCodeDirectory, {
+    ncc(`./${src}`, {
       cache: false
     }).then(async (everything) => {
       const { code, assets } = everything;
