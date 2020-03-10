@@ -13,6 +13,8 @@ async function run() {
     const inputBranch = core.getInput('branch');
     const codeDirectory = core.getInput('src');
     const resolvedCodeDirectory = path.join(__dirname, codeDirectory);
+    console.log(resolvedCodeDirectory);
+    console.log(__dirname);
     
     await exec('git', ['config', '--local', 'user.name', name]);
     await exec('git', ['config', '--local', 'user.email', email]);
