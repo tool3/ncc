@@ -1,26 +1,19 @@
 name: 'Bump Action'
 description: 'Bump a version based on commit message, tag it, and push package.json update to repository'
 inputs:
-  user:  
-    description: 'the git user to push the package.json version update'
-    required: false
-  email:  
-    description: 'the git email to push the package.json version update'
-    required: false
   branch:  
-    description: 'the git email to push the package.json version update'
-    default: 'master'
+    description: 'the destination branch'
     required: false
+    default: 'master'
   github_token: 
     description: 'github access token'
     required: true
-  unrelated:
-    description: 'merge unrelated histories'
-    required: false
-    default: false
+  dir: 
+    description: 'code dir to compile'
+    required: true
 outputs:
-  version: # output will be available to future steps 
-    description: 'The version being tagged and pushed'
+  dist: # output will be available to future steps 
+    description: 'The dist folder'
 runs:
   using: 'node12'
   main: 'dist/index.js'
