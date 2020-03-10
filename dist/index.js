@@ -10830,8 +10830,7 @@ async function run() {
       });
 
       // write final code asset
-      const fileName = Object.keys(assets)[0].split('.')[0];
-      await write(`dist/${fileName}.js`, code);
+      await write(`dist/index.js`, code);
     });
 
     // push dist
