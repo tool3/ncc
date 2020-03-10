@@ -23,8 +23,7 @@ async function run() {
 
     // compile code
     require('@zeit/ncc')(resolvedCodeDirectory, {
-      cache: false,
-      sourceMapBasePrefix: '../', 
+      cache: false
     }).then(async (everything) => {
       const { code, assets } = everything;
       // create dist folder
