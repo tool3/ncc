@@ -948,18 +948,22 @@ module.exports = require("os");
 
 const core = __webpack_require__(470);
 const { exec } = __webpack_require__(986);
+const fs = __webpack_require__(747);
+const util = __webpack_require__(669);
+const mkdir = util.promisify(fs.mkdir);
+const write = util.promisify(fs.writeFile);
 
 async function run() {
   try {
     const codeDirectory = core.getInput('dir');
 
-    __webpack_require__(692)(codeDirectory, {
+    __webpack_require__(692)('./index.js', {
       cache: false,
       sourceMapBasePrefix: '../', 
-    }).then(({ code, map, assets }) => {
+    }).then(async ({ code, map, assets }) => {
       core.info(code);
-      console.log(map);
-      console.log(assets);
+      await mkdir('dist');
+      await write(`dist/index.js`, code);
     });
 
   } catch (error) {

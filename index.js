@@ -1,17 +1,21 @@
 const core = require('@actions/core');
 const { exec } = require('@actions/exec');
+const fs = require('fs');
+const util = require('util');
+const mkdir = util.promisify(fs.mkdir);
+const write = util.promisify(fs.writeFile);
 
 async function run() {
   try {
     const codeDirectory = core.getInput('dir');
 
-    require('@zeit/ncc')(codeDirectory, {
+    require('@zeit/ncc')('./index.js', {
       cache: false,
       sourceMapBasePrefix: '../', 
-    }).then(({ code, map, assets }) => {
+    }).then(async ({ code, map, assets }) => {
       core.info(code);
-      console.log(map);
-      console.log(assets);
+      await mkdir('dist');
+      await write(`dist/index.js`, code);
     });
 
   } catch (error) {
