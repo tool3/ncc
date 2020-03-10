@@ -3,11 +3,10 @@ const { exec } = require('@actions/exec');
 
 async function run() {
   try {
-    const code = core.getInput('dir');
+    const codeDirectory = core.getInput('dir');
 
-    require('@zeit/ncc')(code, {
+    require('@zeit/ncc')(codeDirectory, {
       cache: false,
-      externals: ["externalpackage"],
       sourceMapBasePrefix: '../', 
     }).then(({ code, map, assets }) => {
       core.info(code);

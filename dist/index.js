@@ -951,11 +951,10 @@ const { exec } = __webpack_require__(986);
 
 async function run() {
   try {
-    const code = core.getInput('dir');
+    const codeDirectory = core.getInput('dir');
 
-    __webpack_require__(692)(code, {
+    __webpack_require__(692)(codeDirectory, {
       cache: false,
-      externals: ["externalpackage"],
       sourceMapBasePrefix: '../', 
     }).then(({ code, map, assets }) => {
       core.info(code);
