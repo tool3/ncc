@@ -10804,7 +10804,7 @@ async function run() {
     await exec('npm', ['install']);
 
     // compile code
-    await __webpack_require__(526)(src, {
+    __webpack_require__(526)(src, {
       // provide a custom cache path or disable caching
       cache: false,
       // directory outside of which never to emit assets
@@ -10831,10 +10831,9 @@ async function run() {
 
       // write final code asset
       await write(`dist/index.js`, code);
+      // push dist
+      await exec('git', ['push', 'origin', `HEAD:${inputBranch}`])
     });
-
-    // push dist
-    await exec('git', ['push', 'origin', `HEAD:${inputBranch}`])
 
   } catch (error) {
     core.setFailed(`Failed to publish ${error.message}`);
