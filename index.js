@@ -24,20 +24,17 @@ async function run() {
     // compile code
     const everything = await ncc(src);
 
-    const { code, assets } = everything;
+    const { code } = everything;
     // create dist folder
     await mkdir('dist', { recursive: true });
 
-    // create assets
-    Object.keys(assets).map(async asset => {
-      await write(`dist/${asset}`, assets[asset].source);
-    });
-
     // write final code asset
     await write(`dist/index.js`, code);
+    
     // push dist
-    await exec('git', ['push', 'origin', `HEAD:${inputBranch}`])
-
+    await exec('git', ['add', '.']);
+    await exec('git', ['commit', '-a', '-m', 'dist update']);
+    await exec('git', ['push', 'origin', `HEAD:${inputBranch}`]);
 
   } catch (error) {
     core.setFailed(`Failed to publish ${error.message}`);
