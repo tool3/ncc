@@ -22,7 +22,8 @@ async function run() {
 
     // compile code
     ncc(`./${src}`, {
-      cache: false
+      cache: false,
+      externals: ['./node_modules/@zeit/ncc/dist/ncc/loaders']
     }).then(async (everything) => {
       const { code, assets } = everything;
       // create dist folder
