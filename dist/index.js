@@ -1311,14 +1311,11 @@ const write = util.promisify(fs.writeFile);
 
 async function run() {
   try {
-    core.info(__dirname);
     const { pusher: { email, name } } = github.context.payload;
-    
+
     const inputBranch = core.getInput('branch');
     const codeDirectory = core.getInput('src');
     const resolvedCodeDirectory = path.join(__dirname, codeDirectory);
-    core.info(resolvedCodeDirectory);
-    
     
     await exec('git', ['config', '--local', 'user.name', name]);
     await exec('git', ['config', '--local', 'user.email', email]);
@@ -1328,8 +1325,7 @@ async function run() {
 
     // compile code
     __webpack_require__(48)(resolvedCodeDirectory, {
-      cache: false,
-      sourceMapBasePrefix: '../', 
+      cache: false
     }).then(async (everything) => {
       const { code, assets } = everything;
       // create dist folder
