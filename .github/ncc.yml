@@ -1,0 +1,12 @@
+name: ncc
+
+on: [push]
+
+jobs:
+  bump:
+    runs-on: ubuntu-latest
+    steps:
+    - uses: actions/checkout@master
+    - uses: tool3/ncc@master
+      with:
+        dir: 'index.js'
