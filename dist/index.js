@@ -36,8 +36,6 @@ module.exports =
 /******/ 		// Load entry module and return exports
 /******/ 		return __webpack_require__(662);
 /******/ 	};
-/******/ 	// initialize runtime
-/******/ 	runtime(__webpack_require__);
 /******/
 /******/ 	// run startup
 /******/ 	return startup();
@@ -2293,13 +2291,6 @@ function wrappy (fn, cb) {
 
 /***/ }),
 
-/***/ 184:
-/***/ (function(module) {
-
-module.exports = require("vm");
-
-/***/ }),
-
 /***/ 192:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
@@ -3873,13 +3864,6 @@ function patchForDeprecation(octokit, apiOptions, method, methodName) {
   return patchedMethod;
 }
 
-
-/***/ }),
-
-/***/ 282:
-/***/ (function(module) {
-
-module.exports = require("module");
 
 /***/ }),
 
@@ -8205,20 +8189,6 @@ module.exports = function(fn) {
 
 /***/ }),
 
-/***/ 526:
-/***/ (function(module, exports, __webpack_require__) {
-
-/* module decorator */ module = __webpack_require__.nmd(module);
-const { readFileSync, writeFileSync } = __webpack_require__(747), { Script } = __webpack_require__(184), { wrap } = __webpack_require__(282);
-const source = readFileSync(__webpack_require__.ab + "index.js.cache.js", 'utf-8');
-const cachedData = !process.pkg && __webpack_require__(765).platform !== 'win32' && readFileSync(__webpack_require__.ab + "index.js.cache");
-const script = new Script(wrap(source), cachedData ? { cachedData } : {});
-(script.runInThisContext())(exports, require, module, __filename, __dirname);
-if (cachedData) process.on('exit', () => { try { writeFileSync(__webpack_require__.ab + "index.js.cache", script.createCachedData()); } catch(e) {} });
-
-
-/***/ }),
-
 /***/ 527:
 /***/ (function(module, __unusedexports, __webpack_require__) {
 
@@ -10784,12 +10754,7 @@ function authenticationRequestError(state, error, options) {
 const core = __webpack_require__(341);
 const { exec } = __webpack_require__(153);
 const github = __webpack_require__(458);
-const fs = __webpack_require__(747);
 const path = __webpack_require__(622);
-const util = __webpack_require__(669);
-const ncc = __webpack_require__(526);
-const mkdir = util.promisify(fs.mkdir);
-const write = util.promisify(fs.writeFile);
 
 async function run() {
   try {
@@ -10805,14 +10770,7 @@ async function run() {
     await exec('npm', ['install']);
 
     // compile code
-    const everything = await ncc(src);
-
-    const { code } = everything;
-    // create dist folder
-    await mkdir('dist', { recursive: true });
-
-    // write final code asset
-    await write(`dist/index.js`, code);
+    await exec('npx', ['@zeit/ncc', 'build', src]);
     
     // push dist
     await exec('git', ['add', 'dist/index.js']);
@@ -11240,13 +11198,6 @@ module.exports = factory();
 /***/ (function(module) {
 
 module.exports = require("zlib");
-
-/***/ }),
-
-/***/ 765:
-/***/ (function(module) {
-
-module.exports = require("process");
 
 /***/ }),
 
@@ -12337,26 +12288,4 @@ module.exports = osName;
 
 /***/ })
 
-/******/ },
-/******/ function(__webpack_require__) { // webpackRuntimeModules
-/******/ 	"use strict";
-/******/ 
-/******/ 	/* webpack/runtime/node module decorator */
-/******/ 	!function() {
-/******/ 		__webpack_require__.nmd = function(module) {
-/******/ 			module.paths = [];
-/******/ 			if (!module.children) module.children = [];
-/******/ 			Object.defineProperty(module, 'loaded', {
-/******/ 				enumerable: true,
-/******/ 				get: function() { return module.l; }
-/******/ 			});
-/******/ 			Object.defineProperty(module, 'id', {
-/******/ 				enumerable: true,
-/******/ 				get: function() { return module.i; }
-/******/ 			});
-/******/ 			return module;
-/******/ 		};
-/******/ 	}();
-/******/ 	
-/******/ }
-);
+/******/ });
