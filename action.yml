@@ -1,5 +1,6 @@
-name: 'Bump Action'
-description: 'Bump a version based on commit message, tag it, and push package.json update to repository'
+name: 'ncc action'
+description: 'use @zeit/ncc to compile and push your github action's dist directory! 🚀'
+author: 'Tal Hayut'
 inputs:
   github_token: 
     description: 'github access token'
@@ -19,5 +20,5 @@ runs:
   using: 'node12'
   main: 'dist/index.js'
 branding:
-  icon: 'package'  
-  color: 'red'
+  icon: 'box'  
+  color: 'pink'
