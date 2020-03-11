@@ -16,9 +16,6 @@ inputs:
     default: 'dist release 📦'
   ncc_args:
     description: 'comma seperated args for ncc'
-outputs:
-  dist: 
-    description: 'the dist output directory'
 runs:
   using: 'node12'
   main: 'dist/index.js'
