@@ -10,9 +10,11 @@ inputs:
   branch:  
     description: 'the destination branch'
     default: 'master'
-outputs:
-  dist: # output will be available to future steps 
-    description: 'The dist folder'
+  commit_msg:  
+    description: 'commit message used when pushing dist'
+    default: 'dist release 📦'
+  ncc_args:
+    description: 'command seperated args for ncc'
 runs:
   using: 'node12'
   main: 'dist/index.js'

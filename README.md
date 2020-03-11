@@ -5,7 +5,7 @@ uses `@zeit/ncc`
 # Motivation
 * work on other devices which do not have a terminal
 * code directly on `github` - if that's a thing
-* `github hackathon` :)
+* `github hackathon` 🎉
 
 # Usage    
 ```yaml
@@ -18,7 +18,7 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
         src: 'index.js'
-    - uses: actions/upload-artifact@v1
+    - uses: actions/upload-artifact@v1    <-- optional (upload dist directory)
       with:
         name: dist
         path: dist/
@@ -37,3 +37,9 @@ this will:
 ### `branch`   
   destination branch   
   default: `master`
+### `commit_msg`   
+  commit message used when pushing dist   
+  default: `dist release 📦`
+### `ncc_args`   
+  command seperated args for ncc   
+  exmaple: `'-o, other_dist, -C'`
