@@ -1,5 +1,6 @@
 name: 'ncc action'
-description: 'use @zeit/ncc to compile and push your github action's dist directory!'
+description: 'use @zeit/ncc to compile and push your github action's dist directory! 🚀'
+author: 'Tal Hayut'
 inputs:
   github_token: 
     description: 'github access token'
@@ -15,6 +16,9 @@ inputs:
     default: 'dist release 📦'
   ncc_args:
     description: 'command seperated args for ncc'
+outputs:
+  dist: 
+    description: 'the dist output directory'
 runs:
   using: 'node12'
   main: 'dist/index.js'
