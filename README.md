@@ -1,4 +1,5 @@
-# ncc action 
+# ncc action   
+![ncc](https://github.com/tool3/ncc/workflows/ncc/badge.svg?branch=master)   
 github action to compile your github action and push to a destination branch!   
 uses `@zeit/ncc`
 
