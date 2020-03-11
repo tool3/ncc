@@ -2,12 +2,12 @@
 github action to compile your github action and push to a destination branch!   
 uses `@zeit/ncc`
 
-# Motivation
+# motivation
 * work on other devices which do not have a terminal
 * code directly on `github` - if that's a thing
 * `github hackathon` 🎉
 
-# Usage    
+# usage    
 ```yaml
 jobs:
   build:
@@ -27,7 +27,7 @@ this will:
 * compile `index.js` from the repo root directory.
 * push the compiled `dist` directory to the destination branch.
 
-# Options
+# options
 ### `github_token`   
    **required**   
    Github access token
