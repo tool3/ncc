@@ -1,5 +1,5 @@
 name: 'ncc action'
-description: 'use zeit/ncc to compile and push your github action's dist directory! 🚀'
+description: 'use @zeit/ncc to compile and push your github action's dist directory! 🚀'
 author: 'Tal Hayut'
 inputs:
   github_token: 
@@ -21,4 +21,4 @@ runs:
   main: 'dist/index.js'
 branding:
   icon: 'box'  
-  color: 'pink'
+  color: 'green'
