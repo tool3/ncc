@@ -18,7 +18,7 @@ async function run() {
     const src = path.resolve(path.join(__dirname, core.getInput('src')));
 
     // pull latest
-    await exec('git', ['pull', 'origin', `HEAD:${inputBranch}`]);
+    // await exec('git', ['pull', 'origin', `HEAD:${inputBranch}`]);
 
     core.startGroup(`Compiling ${src}`);
 
