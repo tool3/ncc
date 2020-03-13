@@ -27,7 +27,7 @@ async function run() {
 
     if (nccArgs) {
       const args = nccArgs.split(',');
-      compileArgs.push(args);
+      compileArgs.push(...args);
     }
 
     await exec('npx', compileArgs);
