@@ -13,6 +13,8 @@ async function run() {
     const nccArgs = core.getInput('ncc_args');
     const src = path.resolve(path.join(__dirname, core.getInput('src')));
 
+    core.startGroup(`Compiling ${src}`);
+
     // install dependencies
     await exec('npm', ['install']);
 
@@ -26,12 +28,19 @@ async function run() {
 
     await exec('npx', compileArgs);
     
+    core.endGroup(`Compiling ${src}`);
+
+    core.startGroup('Pushing dist');
+
     // push dist
     await exec('git', ['config', '--local', 'user.name', name]);
     await exec('git', ['config', '--local', 'user.email', email]);
     await exec('git', ['add', 'dist/index.js']);
     await exec('git', ['commit', '-a', '-m',  commitMsg]);
     await exec('git', ['push', 'origin', `HEAD:${inputBranch}`]);
+
+    core.endGroup('Pushing dist');
+    core.info('Compiled and pushed successfully 📦 🎉 ');
 
   } catch (error) {
     core.setFailed(`Failed to publish ${error.message}`);
