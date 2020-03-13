@@ -43,4 +43,4 @@ this will:
   default: `dist release 📦`
 ### `ncc_args`   
   command seperated args for ncc   
-  exmaple: `'-o, other_dist, -C'`
+  exmaple: `'-o, other_dist, -C'` 
