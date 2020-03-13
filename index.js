@@ -37,6 +37,7 @@ async function run() {
     core.startGroup('Pushing dist');
 
     // push dist
+    await exec('git', ['pull', 'origin', `HEAD:${inputBranch}`]);
     await exec('git', ['add', 'dist/index.js']);
     await exec('git', ['commit', '-a', '-m',  commitMsg]);
     await exec('git', ['push', 'origin', `HEAD:${inputBranch}`]);
