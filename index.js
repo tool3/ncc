@@ -10,7 +10,6 @@ async function run() {
     // git auth
     await exec('git', ['config', '--local', 'user.name', name]);
     await exec('git', ['config', '--local', 'user.email', email]);
-    await exec('git', ['pull', 'origin', `HEAD:${inputBranch}`]);
 
     // get input
     const inputBranch = core.getInput('branch');
