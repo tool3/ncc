@@ -7,6 +7,11 @@ async function run() {
   try {
     const { pusher: { email, name } } = github.context.payload;
 
+    // git auth
+    await exec('git', ['config', '--local', 'user.name', name]);
+    await exec('git', ['config', '--local', 'user.email', email]);
+    await exec('git', ['pull', 'origin', `HEAD:${inputBranch}`]);
+
     // get input
     const inputBranch = core.getInput('branch');
     const commitMsg = core.getInput('commit_msg');
@@ -33,8 +38,6 @@ async function run() {
     core.startGroup('Pushing dist');
 
     // push dist
-    await exec('git', ['config', '--local', 'user.name', name]);
-    await exec('git', ['config', '--local', 'user.email', email]);
     await exec('git', ['add', 'dist/index.js']);
     await exec('git', ['commit', '-a', '-m',  commitMsg]);
     await exec('git', ['push', 'origin', `HEAD:${inputBranch}`]);
