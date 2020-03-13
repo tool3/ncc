@@ -10,13 +10,15 @@ async function run() {
     // git auth
     await exec('git', ['config', '--local', 'user.name', name]);
     await exec('git', ['config', '--local', 'user.email', email]);
-    await exec('git', ['pull', 'origin', `HEAD:${inputBranch}`]);
 
     // get input
     const inputBranch = core.getInput('branch');
     const commitMsg = core.getInput('commit_msg');
     const nccArgs = core.getInput('ncc_args');
     const src = path.resolve(path.join(__dirname, core.getInput('src')));
+
+    // pull latest
+    await exec('git', ['pull', 'origin', `HEAD:${inputBranch}`]);
 
     core.startGroup(`Compiling ${src}`);
 
