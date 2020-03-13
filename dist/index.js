@@ -10798,7 +10798,7 @@ async function run() {
     core.info('Compiled and pushed successfully 📦 🎉 ');
 
   } catch (error) {
-    core.setFailed(`Failed to publish ${error.message}`);
+    core.setFailed(`ncc failed! ${error.message}`);
   }
 }
 
