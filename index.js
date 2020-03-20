@@ -19,7 +19,7 @@ async function run() {
 
     // working directory
     core.info('working Dir:')
-    await exec('pwd');
+    await exec('echo', ['$PWD']);
     
 
     // pull latest
