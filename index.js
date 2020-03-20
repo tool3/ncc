@@ -18,7 +18,6 @@ async function run() {
     const src = path.resolve(path.join(__dirname, core.getInput('src')));
 
     // working directory
-    await exec('cd', [repository]);
     core.info(repository);
     core.info(github.context);
 
