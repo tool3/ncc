@@ -5,7 +5,7 @@ const path = require('path');
 
 async function run() {
   try {
-    const { pusher: { email, name } } = github.context.payload;
+    const { pusher: { email, name }, repository } = github.context.payload;
 
     // git auth
     await exec('git', ['config', '--local', 'user.name', name]);
@@ -16,6 +16,9 @@ async function run() {
     const commitMsg = core.getInput('commit_msg');
     const nccArgs = core.getInput('ncc_args');
     const src = path.resolve(path.join(__dirname, core.getInput('src')));
+
+    // working directory
+    await exec('cd', [repository]);
 
     // pull latest
     await exec('git', ['pull', 'origin', `HEAD:${inputBranch}`]);
