@@ -18,8 +18,8 @@ async function run() {
     const src = path.resolve(path.join(__dirname, core.getInput('src')));
 
     // working directory
-    core.info(repository);
-    core.info(github.context);
+    core.info(JSON.stringify(repository, null, 2));
+    core.info(JSON.stringify(github.context, null, 2));
 
     // pull latest
     await exec('git', ['pull', 'origin', `HEAD:${inputBranch}`]);
