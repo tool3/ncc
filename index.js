@@ -10,6 +10,7 @@ async function run() {
     // git auth
     await exec('git', ['config', '--local', 'user.name', name]);
     await exec('git', ['config', '--local', 'user.email', email]);
+    await exec('git', ['remote', 'add', 'origin', repository.html_url]);
 
     // get input
     const inputBranch = core.getInput('branch');
@@ -17,10 +18,8 @@ async function run() {
     const nccArgs = core.getInput('ncc_args');
     const src = path.resolve(path.join(__dirname, core.getInput('src')));
 
-    // working directory
-    core.info('working Dir:')
-    await exec('echo', ['$PWD']);
-    
+    // working directory    
+
 
     // pull latest
     await exec('git', ['pull', 'origin', `HEAD:${inputBranch}`]);
