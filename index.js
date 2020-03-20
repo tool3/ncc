@@ -19,6 +19,8 @@ async function run() {
 
     // working directory
     await exec('cd', [repository]);
+    core.info(repository);
+    core.info(github.context);
 
     // pull latest
     await exec('git', ['pull', 'origin', `HEAD:${inputBranch}`]);
