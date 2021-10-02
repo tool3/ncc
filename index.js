@@ -20,8 +20,9 @@ async function run() {
     // const { email, username } = args;
     // console.log(email, username);
     // git auth
-    // await exec('git', ['config', '--local', 'user.name', payload.sender.login]);
-    // await exec('git', ['config', '--local', 'user.email', username]);
+    await exec('git', ['config', '--local', 'user.name', 'GitHub Action']);
+    await exec('git', ['config', '--local', 'user.email', 'action@github.com']);
+
 
     // get input
     const inputBranch = core.getInput('branch');
