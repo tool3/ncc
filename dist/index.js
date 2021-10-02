@@ -9596,18 +9596,16 @@ async function run() {
         args.email = payload.head_commit.committer.email;
         args.username = payload.head_commit.committer.username;
       } else {
-        args.username = payload.pusher.username
+        args.username = payload.pusher.name
         args.email = payload.pusher.email
       }
 
 
       const {email, username} = args;
-
-      const userName = inputUser || username;
-      const userEmail = inputEmail || email;
+      console.log(email, username)    
     // git auth
-    await exec('git', ['config', '--local', 'user.name', userName]);
-    await exec('git', ['config', '--local', 'user.email', userEmail]);
+    await exec('git', ['config', '--local', 'user.name', email]);
+    await exec('git', ['config', '--local', 'user.email', username]);
 
     // get input
     const inputBranch = core.getInput('branch');
