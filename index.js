@@ -26,7 +26,7 @@ async function run() {
     const compileArgs = ['@vercel/ncc', 'build', src];
 
     if (nccArgs) {
-      const args = nccArgs.split(',');
+      const args = nccArgs.split(',').map(c => c.trim());
       compileArgs.push(...args);
     }
 
