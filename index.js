@@ -6,13 +6,11 @@ const path = require('path');
 async function run() {
   try {
     const { payload } = github.context;
-
-    console.log(JSON.stringify(github.context, null, 2));
     const args = {};
 
     if (payload.head_commit) {
-      args.email = payload.head_commit.committer.email;
       args.username = payload.head_commit.committer.username;
+      args.email = payload.head_commit.committer.email;
     } else {
       args.username = payload.pusher.name;
       args.email = payload.pusher.email;
