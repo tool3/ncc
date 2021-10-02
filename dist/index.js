@@ -9597,15 +9597,15 @@ async function run() {
     const src = path.resolve(path.join(process.cwd(), core.getInput('src')));
 
 
-    //TODO remove
-    await exec('git', ['pull', 'origin', 'master'])
+    // //TODO remove
+    // await exec('git', ['pull', 'origin', 'master'])
 
-    if (inputBranch !== 'master') {
-      await exec('git', ['checkout', inputBranch]);
-    }
+    // if (inputBranch !== 'master') {
+    //   await exec('git', ['checkout', inputBranch]);
+    // }
  
     // pull latest
-    await exec('git', ['pull', 'origin', inputBranch]);
+    await exec('git', ['pull', 'origin', inputBranch, '--allow-unrelated-histories']);
 
     core.startGroup(`Compiling ${src}`);
 
