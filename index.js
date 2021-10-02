@@ -5,11 +5,28 @@ const path = require('path');
 
 async function run() {
   try {
-    const { pusher: { email, name } } = github.context.payload;
+    const {payload} = github.context;
+
+    console.log(JSON.stringify(github.context, null, 2));
+      const args = {};
+
+      if (payload.head_commit) {
+        args.email = payload.head_commit.committer.email;
+        args.username = payload.head_commit.committer.username;
+      } else {
+        args.username = payload.pusher.username
+        args.email = payload.pusher.email
+      }
+
+
+      const {email, username} = args;
+
+      const userName = inputUser || username;
+      const userEmail = inputEmail || email;
 
     // git auth
-    await exec('git', ['config', '--local', 'user.name', name]);
-    await exec('git', ['config', '--local', 'user.email', email]);
+    await exec('git', ['config', '--local', 'user.name', userName]);
+    await exec('git', ['config', '--local', 'user.email', userEmail]);
 
     // get input
     const inputBranch = core.getInput('branch');
@@ -18,7 +35,7 @@ async function run() {
     const src = path.resolve(path.join(process.cwd(), core.getInput('src')));
 
     // pull latest
-    await exec('git', ['pull', 'origin', `HEAD:${inputBranch}`]);
+    await exec('git', ['pull', 'origin', inputBranch]);
 
     core.startGroup(`Compiling ${src}`);
 
