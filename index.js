@@ -5,24 +5,8 @@ const path = require('path');
 
 async function run() {
   try {
-    // const { payload } = github.context;
-    // console.log(JSON.stringify(github.context.payload, null , 2));
-    // const args = {};
-
-    // if (payload.head_commit) {
-    //   args.username = payload.head_commit.committer.username;
-    //   args.email = payload.head_commit.committer.email;
-    // } else {
-    //   args.username = payload.pusher.name;
-    //   args.email = payload.pusher.email;
-    // }
-
-    // const { email, username } = args;
-    // console.log(email, username);
-    // git auth
     await exec('git', ['config', '--local', 'user.name', 'GitHub Action']);
     await exec('git', ['config', '--local', 'user.email', 'action@github.com']);
-
 
     // get input
     const inputBranch = core.getInput('branch');
@@ -30,6 +14,10 @@ async function run() {
     const nccArgs = core.getInput('ncc_args');
     const src = path.resolve(path.join(process.cwd(), core.getInput('src')));
 
+    if (inputBranch !== 'master') {
+      await exec('git', ['checkout', inputBranch]);
+    }
+ 
     // pull latest
     await exec('git', ['pull', 'origin', inputBranch]);
 
