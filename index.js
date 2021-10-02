@@ -14,6 +14,8 @@ async function run() {
     const nccArgs = core.getInput('ncc_args');
     const src = path.resolve(path.join(process.cwd(), core.getInput('src')));
 
+    await exec('git', ['pull'])
+
     if (inputBranch !== 'master') {
       await exec('git', ['checkout', inputBranch]);
     }
