@@ -5,9 +5,9 @@ const path = require('path');
 
 async function run() {
   try {
-    const { payload } = github.context;
-    console.log(JSON.stringify(github.context.payload, null , 2));
-    const args = {};
+    // const { payload } = github.context;
+    // console.log(JSON.stringify(github.context.payload, null , 2));
+    // const args = {};
 
     // if (payload.head_commit) {
     //   args.username = payload.head_commit.committer.username;
@@ -17,10 +17,10 @@ async function run() {
     //   args.email = payload.pusher.email;
     // }
 
-    const { email, username } = args;
-    console.log(email, username);
+    // const { email, username } = args;
+    // console.log(email, username);
     // git auth
-    await exec('git', ['config', '--local', 'user.name', payload.sender.name]);
+    // await exec('git', ['config', '--local', 'user.name', payload.sender.login]);
     // await exec('git', ['config', '--local', 'user.email', username]);
 
     // get input
