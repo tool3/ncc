@@ -1,6 +1,5 @@
 const core = require('@actions/core');
 const { exec } = require('@actions/exec');
-const github = require('@actions/github');
 const path = require('path');
 
 async function run() {
@@ -14,14 +13,7 @@ async function run() {
     const nccArgs = core.getInput('ncc_args');
     const allowUnrelated = core.getInput('allow_unrelated');
     const src = path.resolve(path.join(process.cwd(), core.getInput('src')));
-
-
-    // //TODO remove
-    // await exec('git', ['pull', 'origin', 'master'])
-
-    // if (inputBranch !== 'master') {
-    //   await exec('git', ['checkout', inputBranch]);
-    // }
+    console.log('unrelated', allowUnrelated);
  
     // pull latest
     await exec('git', ['pull', 'origin', inputBranch, allowUnrelated ? '--allow-unrelated-histories' : '']);

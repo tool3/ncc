@@ -16,7 +16,7 @@
   "keywords": [
     "github",
     "ncc",
-    "continous integration"
+    "continuous integration"
   ],
   "author": "Tal Hayut",
   "license": "MIT",
@@ -26,12 +26,9 @@
   "homepage": "https://github.com/tool3/ncc#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/exec": "^1.0.2",
-    "@actions/github": "^2.0.0"
+    "@actions/exec": "^1.0.2"
   },
   "devDependencies": {
-    "eslint": "^6.3.0",
-    "husky": "^3.1.0",
-    "jest": "^24.9.0"
+    "eslint": "^6.3.0"
   }
 }
