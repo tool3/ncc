@@ -23,7 +23,7 @@ async function run() {
     await exec('npm', ['install']);
 
     // compile code
-    const compileArgs = ['@zeit/ncc', 'build', src];
+    const compileArgs = ['@vercel/ncc', 'build', src];
 
     if (nccArgs) {
       const args = nccArgs.split(',');

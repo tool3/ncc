@@ -1,7 +1,7 @@
 # ncc action   
 ![ncc](https://github.com/tool3/ncc/workflows/ncc/badge.svg?branch=master)   
 github action to compile your github action and push to a destination branch!   
-uses `@zeit/ncc`
+uses `@vercel/ncc`
 
 # motivation
 * work on other devices which do not have a terminal
