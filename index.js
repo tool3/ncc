@@ -9,18 +9,18 @@ async function run() {
     console.log(JSON.stringify(github.context.payload, null , 2));
     const args = {};
 
-    if (payload.head_commit) {
-      args.username = payload.head_commit.committer.username;
-      args.email = payload.head_commit.committer.email;
-    } else {
-      args.username = payload.pusher.name;
-      args.email = payload.pusher.email;
-    }
+    // if (payload.head_commit) {
+    //   args.username = payload.head_commit.committer.username;
+    //   args.email = payload.head_commit.committer.email;
+    // } else {
+    //   args.username = payload.pusher.name;
+    //   args.email = payload.pusher.email;
+    // }
 
     const { email, username } = args;
     console.log(email, username);
     // git auth
-    await exec('git', ['config', '--local', 'user.name', email]);
+    await exec('git', ['config', '--local', 'user.name', payload.sender.name]);
     // await exec('git', ['config', '--local', 'user.email', username]);
 
     // get input
