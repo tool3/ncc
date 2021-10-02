@@ -5,22 +5,21 @@ const path = require('path');
 
 async function run() {
   try {
-    const {payload} = github.context;
+    const { payload } = github.context;
 
     console.log(JSON.stringify(github.context, null, 2));
-      const args = {};
+    const args = {};
 
-      if (payload.head_commit) {
-        args.email = payload.head_commit.committer.email;
-        args.username = payload.head_commit.committer.username;
-      } else {
-        args.username = payload.pusher.name
-        args.email = payload.pusher.email
-      }
+    if (payload.head_commit) {
+      args.email = payload.head_commit.committer.email;
+      args.username = payload.head_commit.committer.username;
+    } else {
+      args.username = payload.pusher.name;
+      args.email = payload.pusher.email;
+    }
 
-
-      const {email, username} = args;
-      console.log(email, username)    
+    const { email, username } = args;
+    console.log(email, username);
     // git auth
     await exec('git', ['config', '--local', 'user.name', email]);
     await exec('git', ['config', '--local', 'user.email', username]);
@@ -32,7 +31,7 @@ async function run() {
     const src = path.resolve(path.join(process.cwd(), core.getInput('src')));
 
     // pull latest
-    await exec('git', ['pull', 'origin', inputBranch]);
+    await exec('git', ['pull', 'origin', inputBranch, '--allow-unrelated-histories']);
 
     core.startGroup(`Compiling ${src}`);
 
@@ -48,19 +47,18 @@ async function run() {
     }
 
     await exec('npx', compileArgs);
-    
+
     core.endGroup(`Compiling ${src}`);
 
     core.startGroup('Pushing dist');
 
     // push dist
     await exec('git', ['add', 'dist/index.js']);
-    await exec('git', ['commit', '-a', '-m',  commitMsg]);
+    await exec('git', ['commit', '-a', '-m', commitMsg]);
     await exec('git', ['push', 'origin', `HEAD:${inputBranch}`]);
 
     core.endGroup('Pushing dist');
     core.info('Compiled and pushed successfully 📦 🎉 ');
-
   } catch (error) {
     core.setFailed(`ncc failed! ${error.message}`);
   }
