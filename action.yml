@@ -11,11 +11,18 @@ inputs:
   branch:  
     description: 'the destination branch'
     default: 'master'
+    required: false
   commit_msg:  
     description: 'commit message used when pushing dist'
-    default: 'dist release 📦'
+    default: 'action dist 📦'
+    required: false
   ncc_args:
     description: 'comma seperated args for ncc'
+    required: false
+  allow_unrelated:
+    description: 'enable allow unrelated history flag for git pull'
+    default: 'true'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
