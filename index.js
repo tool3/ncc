@@ -12,6 +12,7 @@ async function run() {
     const inputBranch = core.getInput('branch');
     const commitMsg = core.getInput('commit_msg');
     const nccArgs = core.getInput('ncc_args');
+    const allowUnrelated = core.getInput('allow_unrelated');
     const src = path.resolve(path.join(process.cwd(), core.getInput('src')));
 
 
@@ -23,7 +24,7 @@ async function run() {
     // }
  
     // pull latest
-    await exec('git', ['pull', 'origin', inputBranch, '--allow-unrelated-histories']);
+    await exec('git', ['pull', 'origin', inputBranch, allowUnrelated ? '--allow-unrelated-histories' : '']);
 
     core.startGroup(`Compiling ${src}`);
 

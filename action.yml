@@ -19,6 +19,10 @@ inputs:
   ncc_args:
     description: 'comma seperated args for ncc'
     required: false
+  allow_unrelated:
+    description: 'enable allow unrelated history flag for git pull'
+    default: 'true'
+    required: false
 runs:
   using: 'node12'
   main: 'dist/index.js'
