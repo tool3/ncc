@@ -23,7 +23,6 @@ async function run() {
 
       const userName = inputUser || username;
       const userEmail = inputEmail || email;
-
     // git auth
     await exec('git', ['config', '--local', 'user.name', userName]);
     await exec('git', ['config', '--local', 'user.email', userEmail]);
