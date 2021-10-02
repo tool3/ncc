@@ -6,6 +6,7 @@ const path = require('path');
 async function run() {
   try {
     const { payload } = github.context;
+    console.log(JSON.stringify(github.context, 2 ,null));
     const args = {};
 
     if (payload.head_commit) {
