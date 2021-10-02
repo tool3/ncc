@@ -29,6 +29,6 @@
     "@actions/exec": "^1.0.2"
   },
   "devDependencies": {
-    "eslint": "^6.3.0"
+    "eslint": "^7.32.0"
   }
 }
