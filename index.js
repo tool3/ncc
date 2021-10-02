@@ -6,7 +6,7 @@ const path = require('path');
 async function run() {
   try {
     const { payload } = github.context;
-    console.log(JSON.stringify(github.context, 2 ,null));
+    console.log(JSON.stringify(github.context.payload, null , 2));
     const args = {};
 
     if (payload.head_commit) {
@@ -21,7 +21,7 @@ async function run() {
     console.log(email, username);
     // git auth
     await exec('git', ['config', '--local', 'user.name', email]);
-    await exec('git', ['config', '--local', 'user.email', username]);
+    // await exec('git', ['config', '--local', 'user.email', username]);
 
     // get input
     const inputBranch = core.getInput('branch');
