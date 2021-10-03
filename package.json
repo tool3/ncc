@@ -1,7 +1,7 @@
 {
   "name": "ncc",
   "version": "0.9.1",
-  "description": "ncc github action",
+  "description": "This action creates a single file for your nodejs module via vercel/ncc.",
   "main": "index.js",
   "scripts": {
     "lint": "eslint index.js",
@@ -16,9 +16,11 @@
   "keywords": [
     "github",
     "ncc",
-    "continuous integration"
+    "continuous integration",
+    "distribution",
+    "vercel"
   ],
-  "author": "Tal Hayut",
+  "author": "sidey79",
   "license": "MIT",
   "bugs": {
     "url": "https://github.com/sidey79/ncc/issues"
@@ -29,6 +31,7 @@
     "@actions/exec": "^1.0.2"
   },
   "devDependencies": {
+    "@vercel/ncc": "^0.31.1",
     "eslint": "^7.32.0",
     "jest": "^27.2.4"
   }
