@@ -9,8 +9,6 @@ async function run() {
     const allowUnrelated = core.getInput('allow_unrelated');
     const src = path.resolve(path.join(process.cwd(), core.getInput('src')));
  
-    // pull latest
-    await exec('git', ['pull', 'origin', inputBranch, allowUnrelated ? '--allow-unrelated-histories' : '']);
 
     core.startGroup(`Compiling ${src}`);
 
