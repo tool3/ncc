@@ -1,5 +1,5 @@
 # ncc action   
-![ncc](https://github.com/tool3/ncc/workflows/ncc/badge.svg?branch=master)   
+![ncc](https://github.com/sidey79/ncc/workflows/ncc/badge.svg?branch=main)   
 github action to compile your github action    
 uses `@vercel/ncc`
 
