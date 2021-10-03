@@ -1,6 +1,6 @@
 {
   "name": "ncc",
-  "version": "0.9",
+  "version": "0.9.1",
   "description": "ncc github action",
   "main": "index.js",
   "scripts": {

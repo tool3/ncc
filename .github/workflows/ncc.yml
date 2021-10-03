@@ -12,9 +12,8 @@ jobs:
         cache: 'yarn'
     - run: yarn install
     - run: yarn test
-    - uses: tool3/ncc@master
+    - uses: sidey79/ncc@v0.9
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         src: 'index.js'
     - uses: EndBug/add-and-commit@v7
       with:
