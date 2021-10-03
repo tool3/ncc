@@ -6,7 +6,6 @@ async function run() {
   try {
     // get input
     const nccArgs = core.getInput('ncc_args');
-    const allowUnrelated = core.getInput('allow_unrelated');
     const src = path.resolve(path.join(process.cwd(), core.getInput('src')));
  
 
