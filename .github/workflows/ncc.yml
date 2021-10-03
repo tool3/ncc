@@ -7,6 +7,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2.3.4
+    - uses: actions/setup-node@v2
+    - run: npm install
     - uses: sidey79/ncc@v0.9
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
