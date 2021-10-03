@@ -2,20 +2,9 @@ name: 'ncc action'
 description: 'use @zeit/ncc to compile and push your github action dist! 🚀'
 author: 'Tal Hayut'
 inputs:
-  github_token: 
-    description: 'github access token'
-    required: true
   src: 
     description: 'source code dir/file to compile'
     required: true
-  branch:  
-    description: 'the destination branch'
-    default: 'master'
-    required: false
-  commit_msg:  
-    description: 'commit message used when pushing dist'
-    default: 'action dist 📦'
-    required: false
   ncc_args:
     description: 'comma seperated args for ncc'
     required: false
