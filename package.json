@@ -1,6 +1,6 @@
 {
   "name": "ncc",
-  "version": "1.0.4",
+  "version": "0.9",
   "description": "ncc github action",
   "main": "index.js",
   "scripts": {
@@ -11,7 +11,7 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+git@github.com:tool3/ncc.git"
+    "url": "git+git@github.com:sidey79/ncc.git"
   },
   "keywords": [
     "github",
@@ -21,9 +21,9 @@
   "author": "Tal Hayut",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/tool3/ncc/issues"
+    "url": "https://github.com/sidey79/ncc/issues"
   },
-  "homepage": "https://github.com/tool3/ncc#readme",
+  "homepage": "https://github.com/sidey79/ncc#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
     "@actions/exec": "^1.0.2"
