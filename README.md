@@ -1,12 +1,10 @@
 # ncc action   
 ![ncc](https://github.com/tool3/ncc/workflows/ncc/badge.svg?branch=master)   
-github action to compile your github action and push to a destination branch!   
+github action to compile your github action    
 uses `@vercel/ncc`
 
 # motivation
-* work on other devices which do not have a terminal
-* code directly on `github` - if that's a thing
-* `github hackathon` 🎉
+* forked from tool3/ncc but i disliked the combination of compiling and pushing into a single action
 
 # usage    
 ```yaml
@@ -17,34 +15,19 @@ jobs:
     - uses: actions/checkout@master
     - uses: tool3/ncc@master
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         src: 'index.js'
-    - uses: actions/upload-artifact@v1    <-- optional (upload dist directory)
-      with:
-        name: dist
-        path: dist/
 ```
 this will:
 * compile `index.js` from the repo root directory.
-* push the compiled `dist` directory to the destination branch.
+* save the result into `dist` directory to the working directory.
 
 # options
-### `github_token`   
-   **required**   
-   Github access token
 ### `src`   
   **required**   
   default: `index.js`
-### `branch`   
-  destination branch   
-  default: `master`
-### `commit_msg`   
-  commit message used when pushing dist   
-  default: `dist release 📦`
 ### `ncc_args`   
   command seperated args for ncc   
   exmaple: `'-o, other_dist, -C'` 
-
 ### `allow_unrelated`   
   adds `--allow-unrelated-histories` when perform `git pull`
   default: `true`
