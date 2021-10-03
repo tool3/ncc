@@ -14,7 +14,6 @@ jobs:
     - run: yarn test
     - uses: sidey79/ncc@v0.9
       with:
-        github_token: ${{ secrets.GITHUB_TOKEN }}
         src: 'index.js'
     - uses: EndBug/add-and-commit@v7
       with:
