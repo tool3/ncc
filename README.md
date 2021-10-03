@@ -13,9 +13,20 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: tool3/ncc@master
+    - uses: sidey79/ncc@v0.9.1
       with:
         src: 'index.js'
+                
+    # Push back the created dist file to your branch            
+    - uses: EndBug/add-and-commit@v7
+      with:
+        message: Commit Dist file
+        committer_name: GitHub Actions
+        committer_email: actions@github.com
+        add: 'dist'
+        signoff: true
+        push: true
+        
 ```
 this will:
 * compile `index.js` from the repo root directory.
