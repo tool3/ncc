@@ -28,6 +28,3 @@ this will:
 ### `ncc_args`   
   command seperated args for ncc   
   exmaple: `'-o, other_dist, -C'` 
-### `allow_unrelated`   
-  adds `--allow-unrelated-histories` when perform `git pull`
-  default: `true`
