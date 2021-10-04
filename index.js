@@ -37,12 +37,21 @@ async function run() {
     core.startGroup('Pushing dist');
 
     // push dist
-    await exec('git', ['add', 'dist/index.js']);
-    await exec('git', ['commit', '-a', '-m', commitMsg]);
-    await exec('git', ['push', 'origin', `HEAD:${inputBranch}`]);
+    try {
+      await exec('git', ['add', 'dist/index.js']);
+      await exec('git', ['commit', '-a', '-m', commitMsg]);
+    } catch (error) {
+      if (error.stdout.includes('nothing to commit, working tree clean')) {
+        return core.info('Nothing to commit! 🙂');
+      }
+      throw error;
+    }
+    
 
     core.endGroup('Pushing dist');
+    await exec('git', ['push', 'origin', `HEAD:${inputBranch}`]);  
     core.info('Compiled and pushed successfully 📦 🎉 ');
+
   } catch (error) {
     core.setFailed(`ncc failed! ${error.message}`);
   }
