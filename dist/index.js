@@ -2984,7 +2984,7 @@ async function run() {
     const src = path.resolve(path.join(process.cwd(), core.getInput('src')));
  
     // pull latest
-    await exec('git', ['pull', 'origin', inputBranch, allowUnrelated ? '--allow-unrelated-histories' : '']);
+    await exec('git', ['pull', 'origin', inputBranch, allowUnrelated ? '--allow-unrelated-histories' : '', '--rebase']);
 
     core.startGroup(`Compiling ${src}`);
 
