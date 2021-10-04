@@ -48,3 +48,4 @@ this will:
 ### `allow_unrelated`   
   adds `--allow-unrelated-histories` when perform `git pull`
   default: `true`
+ 
