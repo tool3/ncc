@@ -22,7 +22,7 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
       - name: Auto tag
-        uses: rbkmoney/action-autotag@v1
+        uses: Klemensas/action-autotag@1.2.3
         with:
           GITHUB_TOKEN: "${{ secrets.GITHUB_TOKEN }}"
           package_root: ./
