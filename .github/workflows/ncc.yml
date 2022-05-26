@@ -15,7 +15,7 @@ jobs:
     - uses: sidey79/ncc@v1.0.0
       with:
         src: 'index.js'
-    - uses: EndBug/add-and-commit@v7
+    - uses: EndBug/add-and-commit@v9
       if: ${{ github.actor != 'dependabot[bot]' }}
       with:
         message: Commit Dist file
