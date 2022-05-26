@@ -28,7 +28,7 @@
   "homepage": "https://github.com/sidey79/ncc#readme",
   "dependencies": {
     "@actions/core": "^1.2.6",
-    "@actions/exec": "^1.0.2"
+    "@actions/exec": "^1.1.1"
   },
   "devDependencies": {
     "@vercel/ncc": "^0.33.1",
