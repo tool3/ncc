@@ -27,7 +27,7 @@
   },
   "homepage": "https://github.com/sidey79/ncc#readme",
   "dependencies": {
-    "@actions/core": "^1.2.6",
+    "@actions/core": "^1.10.0",
     "@actions/exec": "^1.1.1"
   },
   "devDependencies": {
