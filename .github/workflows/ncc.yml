@@ -12,7 +12,7 @@ jobs:
         cache: 'yarn'
     - run: yarn install
     - run: yarn test
-    - uses: sidey79/ncc@V1.2.0
+    - uses: sidey79/ncc@v1.3.0
       with:
         src: 'index.js'
     - uses: EndBug/add-and-commit@v9
