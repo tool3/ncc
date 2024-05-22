@@ -1,5 +1,5 @@
 name: 'ncc action'
-description: 'use @zeit/ncc to compile and push your github action dist! 🚀'
+description: 'use @vercel/ncc to compile and push your github action dist! 🚀'
 author: 'Tal Hayut'
 inputs:
   github_token: 
@@ -24,7 +24,7 @@ inputs:
     default: 'true'
     required: false
 runs:
-  using: 'node12'
+  using: 'node20'
   main: 'dist/index.js'
 branding:
   icon: 'box'  
